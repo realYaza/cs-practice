@@ -17,3 +17,10 @@ for i in range(n):
         max_value = max(max_value, zap)
     else:
         er_count += 1
+
+print('Вывод:')
+print(n)
+print(er_count)
+print(prv_count)
+print(round(max_value, 1))
+print(round(sum/(n-er_count), 1) )
