@@ -18,3 +18,16 @@ def average(scores):
     if i == 0:
         return 0.0
     return sum / i
+
+def ranking(names, scores):
+    ns = []
+    res = []
+    for i in range(len(names)):
+        ns.append((names[i], scores[i]))
+
+    ns = sorted(ns, key = lambda x: -x[1])
+
+    for obj in ns:
+        res.append(obj[0])
+
+    return res
