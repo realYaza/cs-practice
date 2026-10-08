@@ -1,6 +1,6 @@
 
 def winner(names, scores):
-    mx = [-1, 0]
+    mx = [-9999999999, 0]
     i = 0
     for sc in scores:
         if sc > mx[0]:
@@ -17,7 +17,7 @@ def average(scores):
 
     if i == 0:
         return 0.0
-    return sum / i
+    return f'{(sum / i):.3}'
 
 def ranking(names, scores):
     ns = []
