@@ -31,3 +31,12 @@ def ranking(names, scores):
         res.append(obj[0])
 
     return res
+
+def above_average(names, scores):
+    av = average(scores)
+    res = []
+
+    for i in range(len(names)):
+        if scores[i] > av:
+            res.append(names[i])
+    return res
