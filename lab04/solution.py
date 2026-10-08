@@ -17,7 +17,7 @@ def average(scores):
 
     if i == 0:
         return 0.0
-    return f'{(sum / i):.3}'
+    return float(f'{(sum / i):.3}')
 
 def ranking(names, scores):
     ns = []
