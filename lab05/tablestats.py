@@ -6,7 +6,7 @@ def read_rows(lines):
         if line != '':
             line = line.split(',')
             if len(headers) == 0:
-                headers = [line[0], line[1], line[2]]
+                headers = line
             elif len(line) == len(headers):
                 res.append({headers[0] : line[0], headers[1] : line[1], headers[2] : line[2]})
 
@@ -27,7 +27,10 @@ def total_minutes(rows, kind):
     cnt = 0
     for row in rows:
         if row["тип"] == kind:
-            cnt += float(row.get('минуты', '0').replace(',', '.'))
+            try:
+                cnt += float(row.get('минуты', '0').replace(',', '.'))
+            except ValueError:
+                continue #если в минутах текст то не крашнется а просто проигнорит
 
     return round(cnt, 1)
 
@@ -37,4 +40,4 @@ def to_csv(counts):
     for q in res:
         lines.append(f'{q[0]},{q[1]}')
 
-    return '\n'.join(lines) + '\n'
+    return '\n'.join(lines) + '\n' #\n это перевести на след. строчку курсор

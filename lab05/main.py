@@ -1,3 +1,6 @@
+from lab05.tablestats import to_csv
+
+
 def read_rows(lines):
     headers = []
     res = []
@@ -28,12 +31,13 @@ def total_minutes(rows, kind):
     cnt = 0
     for row in rows:
         if row["тип"] == kind:
-            cnt += float(row.get('минуты', '0').replace(',', '.'))
-
+            try:
+                cnt += float(row.get('минуты', '0').replace(',', '.'))
+            except ValueError:
+                continue #если в минутах текст то не крашнется а просто проигнорит
     return round(cnt, 1)
 
-
-path = input('Введите путь файла:').strip()
+path = input().strip()
 
 with open(path, encoding = "utf-8") as table:
     rows = read_rows(table)
@@ -42,4 +46,4 @@ with open("summary.csv", "w", encoding="utf-8") as out:
     types = len(count_types(rows))
     er_sum= total_minutes(rows, 'ошибка')
     print(f'{len(rows)}' + '\n' + f'{types}' + '\n' + f'{er_sum}')
-    out.write(f'{len(rows)}' + '\n' + f'{types}' + '\n' + f'{er_sum}')
+    out.write(to_csv(count_types(rows)))
