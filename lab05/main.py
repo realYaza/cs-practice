@@ -2,8 +2,9 @@ def read_rows(lines):
     headers = []
     res = []
     for line in lines:
-        line = line.strip().split(',')
+        line = line.strip()
         if line != '':
+            line = line.split(',')
             if len(headers) == 0:
                 headers = [line[0], line[1], line[2]]
             elif len(line) == len(headers):
@@ -27,7 +28,7 @@ def total_minutes(rows, kind):
     cnt = 0
     for row in rows:
         if row["тип"] == kind:
-            cnt += float(row.get('минуты', 0).replace(',', '.'))
+            cnt += float(row.get('минуты', '0').replace(',', '.'))
 
     return round(cnt, 1)
 
@@ -40,5 +41,5 @@ with open(path, encoding = "utf-8") as table:
 with open("summary.csv", "w", encoding="utf-8") as out:
     types = len(count_types(rows))
     er_sum= total_minutes(rows, 'ошибка')
-
+    print(f'{len(rows)}' + '\n' + f'{types}' + '\n' + f'{er_sum}')
     out.write(f'{len(rows)}' + '\n' + f'{types}' + '\n' + f'{er_sum}')
