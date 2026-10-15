@@ -34,12 +34,3 @@ def to_csv(counts):
     print('тип, количество')
     for q in res:
         print(q[0], q[1])
-
-
-f = open('events.csv')
-rr = read_rows(f)
-ct = count_types(rr)
-tm = total_minutes(rr, 'запуск')
-
-#print(ct)
-to_csv(ct)
