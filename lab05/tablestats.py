@@ -5,6 +5,7 @@ def read_rows(lines):
         line = line.strip()
         if line != '':
             line = line.split(',')
+            line = [q.strip() for q in line]
             if len(headers) == 0:
                 headers = line
             elif len(line) == len(headers):
