@@ -31,6 +31,8 @@ def total_minutes(rows, kind):
 
 def to_csv(counts):
     res = sorted( [(key, value) for key, value in counts.items()] )
-    print('тип, количество')
+    lines = ['тип, количество']
     for q in res:
-        print(q[0], q[1])
+        lines.append(f'{q[0]}, {q[1]}')
+
+    return '\n'.join(lines) + '\n'
