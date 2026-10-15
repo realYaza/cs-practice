@@ -1,6 +1,3 @@
-from lab05.tablestats import to_csv
-
-
 def read_rows(lines):
     headers = []
     res = []
@@ -9,7 +6,7 @@ def read_rows(lines):
         if line != '':
             line = line.split(',')
             if len(headers) == 0:
-                headers = [line[0], line[1], line[2]]
+                headers = line
             elif len(line) == len(headers):
                 res.append({headers[0] : line[0], headers[1] : line[1], headers[2] : line[2]})
 
@@ -26,7 +23,6 @@ def count_types(rows):
     return types
 
 
-
 def total_minutes(rows, kind):
     cnt = 0
     for row in rows:
@@ -35,8 +31,16 @@ def total_minutes(rows, kind):
                 cnt += float(row.get('минуты', '0').replace(',', '.'))
             except ValueError:
                 continue #если в минутах текст то не крашнется а просто проигнорит
+
     return round(cnt, 1)
 
+def to_csv(counts):
+    res = sorted( [(key, value) for key, value in counts.items()] )
+    lines = ['тип,количество']
+    for q in res:
+        lines.append(f'{q[0]},{q[1]}')
+
+    return '\n'.join(lines) + '\n' #\n это перевести на след. строчку курсор
 path = input().strip()
 
 with open(path, encoding = "utf-8") as table:
