@@ -15,8 +15,9 @@ def read_rows(lines):
 def count_types(rows):
     types = {}
     for row in rows:
-        type = row['тип']
-        types[type] = types.get(type, 0) + 1
+        if 'тип' in row:
+            type = row['тип']
+            types[type] = types.get(type, 0) + 1
 
     return types
 
@@ -25,7 +26,7 @@ def total_minutes(rows, kind):
     cnt = 0
     for row in rows:
         if row["тип"] == kind:
-            cnt += float(row['минуты'].replace(',', '.'))
+            cnt += float(row.get('минуты', 0).replace(',', '.'))
 
     return round(cnt, 1)
 
