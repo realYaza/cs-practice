@@ -16,7 +16,7 @@ def common(first, second):
         if typ in second:
             res.append(typ)
 
-    return res
+    return sorted(res)
 
 def only_in_first(first, second):
     res = []
