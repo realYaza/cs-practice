@@ -9,3 +9,19 @@ def unique_sorted(values):
     for typ in values:
         res.append(typ)
     return sorted(set(res))
+
+def common(first, second):
+    res = []
+    for typ in first:
+        if typ in second:
+            res.append(typ)
+
+    return res
+
+def only_in_first(first, second):
+    res = []
+    for typ in first:
+        if typ not in second:
+            res.append(typ)
+
+    return res
