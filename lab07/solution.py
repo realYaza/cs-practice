@@ -22,3 +22,13 @@ def column_means(matrix):
         matrix = np.asarray(matrix, dtype=float)
         return matrix.mean(axis=0).round(6).tolist() #встроенная ф-ия mean считает ср. знач, а параметр 0 даёт ей указание идти по столбцам
         #round округляет до 6 после запятой
+
+def column_range(matrix, column):
+    if not matrix:
+        return 0.0
+    else:
+        matrix = np.asarray(matrix, dtype=float)
+        col = matrix[:, column]  # срез matrix[строка(нашем случае вся, обозначаем :), столбец]
+        return round(max(col) - min(col), 6)
+
+print(column_range([[1, 2], [5, 7]], 1) )
