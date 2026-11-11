@@ -1,5 +1,5 @@
 import numpy as np
-
+from setuptools.msvc import RegistryInfo
 
 #задание 1
 hours = np.arange(0, 22, 3)
@@ -60,4 +60,21 @@ small_matrix[1:, 1:] = 9
 
 changed_hours = hours.copy()
 changed_hours[2:5] = 99
-print(changed_hours)
+changed_hours[::2] = -1
+print(changed_hours) #.copy() нужна чтобы создать копию hours. если бы мы просто присвоили, то изменения применялись и обе переменные, ведь они бы занимали одно место в памяти
+print(hours)
+
+changed_matrix = matrix.copy()
+changed_matrix[1, :] = 0
+changed_matrix[:, -1] = -1
+changed_matrix[1:4, 1:4] = 100
+print(changed_matrix)
+print(matrix)
+
+#задание 5
+numbers = np.arange(12)
+table = numbers.reshape(3, 4)
+transposed = table.T
+print(numbers.shape)
+print(table.shape)
+print(transposed.shape) #размеры 3 на 4 позволяют полностью без остатка поместить все 12 элементов, а 5 на 3 такого не позволяют, ведь в нём помещается 15 элеменов, следовательно будут пустые места
