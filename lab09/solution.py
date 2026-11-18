@@ -10,7 +10,7 @@ def vector_report(values):
 
 def change_vector(values):
     values = np.array(values, dtype=float)
-    values[1:4] = 99
+    values[2:5] = 99
     values[::2] = -1
     return values.tolist()
 
