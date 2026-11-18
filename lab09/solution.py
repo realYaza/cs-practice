@@ -13,3 +13,13 @@ def change_vector(values):
     values[1:4] = 99
     values[1::2] = -1
     return values.tolist()
+
+def cap_above(values, limit):
+    values = np.array(values)
+    values[values > limit] = limit #по условию в [] находим элементы, и заменяем их limit
+    return values.tolist()
+
+def celsius_to_fahrenheit(values):
+    values = np.array(values, dtype= float)
+    values = values * 9 / 5 + 32
+    return values.tolist()
