@@ -10,7 +10,7 @@ def rectangle(matrix, row_start, row_stop, column_start, column_stop):
     return matrix[row_start:row_stop, column_start:column_stop].tolist()
 
 def replace_rectangle(matrix, row_start, row_stop, column_start, column_stop, value):
-    matrix = np.array(matrix, dtype=float)
+    matrix = np.array(matrix, dtype=float) #без .copy потому что .array и так копию делает
     matrix[row_start:row_stop, column_start:column_stop] = value
     return matrix.tolist()
 
@@ -33,3 +33,12 @@ def solve_system(matrix, vector):
     vector = np.asarray(vector, dtype=float)
     x = np.linalg.solve(matrix, vector)
     return x.round(6).tolist()
+
+def tensor_channel_mean(tensor):
+    tensor = np.asarray(tensor, dtype=float).mean(axis=-1)
+    return tensor.tolist()
+
+def point_distance(first, second):
+    first = np.asarray(first, dtype=float)
+    second = np.asarray(second, dtype=float)
+    return round(float(np.linalg.norm(first - second)), 6)
