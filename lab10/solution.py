@@ -2,7 +2,7 @@ import numpy as np
 
 def make_table(rows, columns):
     res = np.arange(0, rows*columns)
-    res = np.reshape(res, rows, columns)
+    res = np.reshape(res, (rows, columns))
     return res.tolist()
 
 def rectangle(matrix, row_start, row_stop, column_start, column_stop):
